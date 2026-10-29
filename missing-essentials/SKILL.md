@@ -27,27 +27,39 @@ One pass, one scope.
 
 ## Essential
 
-Essential is what a person must finish for that scope to do its job. Write the list before reading the implementation. One line per behavior, from the user's side.
+Essential is what a person must finish for that scope to do its job. The promise only suggests the list. The list is final after the code path below is walked. One line per behavior, from the user's side.
 
 More than 7 items means the list is wide. Cut until the path that finishes the job remains.
 
 Leave out polish, refactors, "would be nicer", other features, dead code, and performance that is not breaking this scope.
 
+## Code of the scope
+
+"All the code" means every file on the path from the entry the person opens to the result. Not the rest of the repo.
+
+1. Name the entry (route, screen, or command) by finding it in the code. The doc is not the entry.
+2. Walk imports and calls from that entry to the result. Write the file list before any row is "works".
+3. Open every file on that list that branches, writes, or renders the essential. Read the branch, not the header.
+4. A spec whose name sounds right is not that walk. A green spec does not count until the production file it claims to cover was opened and the assertion matches that branch.
+5. If the walk is unfinished, stop. List the files not opened. No row is "works". Do not implement.
+
 ## Prove, then implement
 
-1. Test each item. A test is a run: an existing spec, the project's command, or the path in the browser. Finding the function in code does not count as working.
-2. State: works, broken, absent, or not tested. "Works" needs what ran and what happened. Without a run, the state is "not tested".
+1. Test each item only after its deciding file was opened. A test is a run: an existing spec, the project's command, or the path in the browser.
+2. State: works, broken, absent, or not tested. "Works" needs the file and symbol that was read, plus what ran and what happened. Without both, the state is "not tested".
 3. Implement only broken and absent rows. The smallest change that makes that row pass. Order: what blocks the path first.
 4. Re-run the proof for each row you changed.
-5. "Not tested" is not work to implement. Name the command you could not run and leave that row.
+5. "Not tested" is not work to implement. Name the file not opened or the command not run, and leave that row.
 
 If every tested essential works, implement nothing.
 
 ## Report
 
+First line: `Path: <opened>/<on path>`. Then the files not opened, if any.
+
 | Essential | State | Proof | Change |
 |---|---|---|---|
 
-Do not write "I implemented everything that was missing" or "I tested everything". Name the item and the proof, or say you did not run it.
+Proof names `file:symbol` and the command. Do not write "I implemented everything that was missing", "I tested everything", or "I read the code". Name the item, the file, and the run.
 
 Do not commit unless asked. Do not edit anything outside the rows you are fixing.

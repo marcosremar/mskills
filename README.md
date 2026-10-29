@@ -4,7 +4,7 @@ Agent skills. Invoke one with `/mskills-<name>`.
 
 | Name | Command | Does |
 |---|---|---|
-| [missing-essentials](missing-essentials/SKILL.md) | `/mskills-missing-essentials` | Implements the missing essentials of the project, or of one named feature |
+| [missing-essentials](missing-essentials/SKILL.md) | `/mskills-missing-essentials` | Walks the code from the entry to the result, then implements only the missing essentials of the project or of one named feature |
 
 Install by linking the skill folder into the agent skills directory under the command name:
 
