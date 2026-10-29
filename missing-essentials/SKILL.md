@@ -33,33 +33,33 @@ More than 7 items means the list is wide. Cut until the path that finishes the j
 
 Leave out polish, refactors, "would be nicer", other features, dead code, and performance that is not breaking this scope.
 
-## Code of the scope
+## Walk, then prove
 
-"All the code" means every file on the path from the entry the person opens to the result. Not the rest of the repo.
+"All the code" is the hops from the entry the person opens to the result they get. Not the rest of the repo. Do these hops before the table. A row cannot be "works" until its hops are written.
 
-1. Name the entry (route, screen, or command) by finding it in the code. The doc is not the entry.
-2. Walk imports and calls from that entry to the result. Write the file list before any row is "works".
-3. Open every file on that list that branches, writes, or renders the essential. Read the branch, not the header.
-4. A spec whose name sounds right is not that walk. A green spec does not count until the production file it claims to cover was opened and the assertion matches that branch.
-5. If the walk is unfinished, stop. List the files not opened. No row is "works". Do not implement.
+1. Search the code for the entry (route, screen, or handler). Record `file:line`. A path taken from a doc is not an entry.
+2. From that symbol, follow one direct call or import at a time, only while it still stands between the person and the result. Stop at the screen they see or the write they keep.
+3. For each hop, read the lines that branch, write, or render. Record `file:symbol`, the line range, and what that hop does for the person. A filename from search, a graph, or a doc is not a hop.
+4. Search the callers of the deciding function. Open a second caller that skips the behavior. It is another hop.
+5. Run the test only after those lines are read. Match the assertion to the branch you read. A green spec whose assertion you did not match does not count.
+
+These do not finish a hop: "the spec name matches", "the doc names the file", "the graph listed it", "I already know this code".
+
+If a hop is unread, stop. No row is "works". Do not implement.
 
 ## Prove, then implement
 
-1. Test each item only after its deciding file was opened. A test is a run: an existing spec, the project's command, or the path in the browser.
-2. State: works, broken, absent, or not tested. "Works" needs the file and symbol that was read, plus what ran and what happened. Without both, the state is "not tested".
-3. Implement only broken and absent rows. The smallest change that makes that row pass. Order: what blocks the path first.
-4. Re-run the proof for each row you changed.
-5. "Not tested" is not work to implement. Name the file not opened or the command not run, and leave that row.
+State: works, broken, absent, or not tested. "Works" needs the line range, the command, and what happened. Without all three, the state is "not tested".
 
-If every tested essential works, implement nothing.
+Implement only broken and absent rows, the smallest change that makes that row pass, blockers first. Re-run the proof for each row you changed. "Not tested" is not work to implement. If every tested essential works, implement nothing.
 
 ## Report
 
-First line: `Path: <opened>/<on path>`. Then the files not opened, if any.
+Write the hops before the table. One line each: `n. file:symbol lines a–b — what the person gets`. Then:
 
 | Essential | State | Proof | Change |
 |---|---|---|---|
 
-Proof names `file:symbol` and the command. Do not write "I implemented everything that was missing", "I tested everything", or "I read the code". Name the item, the file, and the run.
+Proof repeats the line range and the command. Do not write "I implemented everything that was missing", "I tested everything", or "I read the code". A report with no hop list is unfinished: go back to the walk.
 
 Do not commit unless asked. Do not edit anything outside the rows you are fixing.
