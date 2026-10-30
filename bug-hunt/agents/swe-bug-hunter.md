@@ -4,7 +4,7 @@ description: Focused bug investigator that deep-dives into specific code regions
 model: opus
 ---
 
-> Adapted from chrisallenlane/claude-swe-workflows (agents, commit 20f50d4a, MIT — see `../LICENSE`). Part of the mskills `bug-hunt` skill. The orchestrator passes the project's rules (the "Project rules" section of `../SKILL.md`); they override anything below.
+> Adapted from [chrisallenlane/claude-swe-workflows](https://github.com/chrisallenlane/claude-swe-workflows/tree/20f50d4a/agents) (commit 20f50d4a, MIT — see `../LICENSE`). Part of the mskills `bug-hunt` skill. The orchestrator passes the project's rules (the "Project rules" section of `../SKILL.md`); they override anything below.
 
 # Purpose
 

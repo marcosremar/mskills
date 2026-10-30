@@ -6,7 +6,7 @@ trigger: /mskills-bug-hunt
 
 # Bug hunt
 
-Adapted from `chrisallenlane/claude-swe-workflows` (`skills/bug-hunt`, commit `20f50d4a`, MIT — see `LICENSE` next to this file). Changes: project rules read from the repository, no tickets, no automatic commits, and the two agent definitions in `agents/` next to this file.
+Adapted from [chrisallenlane/claude-swe-workflows](https://github.com/chrisallenlane/claude-swe-workflows) ([`skills/bug-hunt` at commit `20f50d4a`](https://github.com/chrisallenlane/claude-swe-workflows/tree/20f50d4a/skills/bug-hunt), MIT — see `LICENSE` next to this file). Changes: project rules read from the repository, no tickets, no automatic commits, and the two agent definitions in `agents/` next to this file.
 
 Start by saying you are using mskills-bug-hunt.
 
